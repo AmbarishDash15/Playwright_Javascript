@@ -74,11 +74,9 @@ test('Handle Dialog Boxes',async({page})=> {
         const dialogMsg = await dialog.message();
         assert(dialog.message().includes('Tester'));
         if(dialogMsg.includes('Are you sure you want to confirm?')){
-            console.log('Confirm box message: '+dialogMsg);
             await dialog.dismiss();
         }
         else{
-            console.log('Alert box message: '+dialogMsg);
             await dialog.accept();
         }
         
@@ -88,7 +86,7 @@ test('Handle Dialog Boxes',async({page})=> {
     await btnConfirm.click();
 })
 
-test('Interact with tables and web elements visibility',async({page})=>{
+test('Interact with tables',async({page})=>{
     const coursePriceToVerify = ['JMETER','25'];
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     //Web table
