@@ -1,7 +1,7 @@
 const {test, expect} = require('@playwright/test');
 const {PageObjectManager} = require('../pageObjects/PageObjectManager');
 
-test.only('End to End Client App with POM',async({page}) => {
+test('End to End Client App with POM',async({page}) => {
     const appUrl = 'https://rahulshettyacademy.com/client'; //test data
     const loginEmail = 'dash.ambarish15+third@gmail.com'; //test data
     const password = 'Password@123'; //test data
