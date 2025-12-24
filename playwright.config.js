@@ -27,7 +27,8 @@ module.exports = defineConfig({
   //workers: process.env.CI ? 5 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //reporter: 'html',
-  reporter: [["line"], ["allure-playwright"]],
+  //reporter: [["line"], ["allure-playwright"]],
+  reporter: process.env.CI ? 'html' : [["line"], ["allure-playwright"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     //browserName : 'chromium'
