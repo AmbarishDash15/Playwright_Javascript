@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const { assert } = require('console');
+test.describe.configure({mode: 'parallel'});
 
 test('Interact with Web elements',async({page}) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');

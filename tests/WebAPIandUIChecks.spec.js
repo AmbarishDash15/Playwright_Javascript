@@ -1,18 +1,21 @@
 const {test,expect,request} = require('@playwright/test');
+test.describe.configure({mode: 'serial'})
+const loginEmail = 'dash.ambarish15+api@gmail.com';
+const loginPayload = {userEmail:loginEmail,userPassword:'Password@123'};
 const countryToSelect = 'India';
 const orderPayLoad = {orders:[{country:countryToSelect,productOrderedId:'68a961459320a140fe1ca57a'}]};
 var token;
 var orderID;
 
-test('End to End using API Login', async({page}) => {
-    const loginEmail = 'dash.ambarish15+api@gmail.com';
-    
-    const loginPayload = {userEmail:loginEmail,userPassword:'Password@123'};
-    const APIContext = await request.newContext({ignoreHTTPSErrors: true});
+test.beforeEach(async() => {
+    const APIContext = await request.newContext();
     const APIResponse = await APIContext.post('https://rahulshettyacademy.com/api/ecom/auth/login',{data: loginPayload});
     expect(APIResponse.ok()).toBeTruthy();
     const loginResponseJson = await APIResponse.json();
     token = loginResponseJson.token;
+})
+
+test('End to End using API Login', async({page}) => {
     const itemToBuy = 'ADIDAS ORIGINAL';
     await page.addInitScript(value => {
         window.localStorage.setItem('token',value);
@@ -125,13 +128,6 @@ test('End to End using API Login', async({page}) => {
 
 test('Login and Order with API and order UI Validation',async({page}) => {
     const itemToBuy = 'ZARA COAT 3';
-    const loginEmail = 'dash.ambarish15+api2@gmail.com';
-    const loginPayload = {userEmail:loginEmail,userPassword:'Password@123'};
-    const APIContext2 = await request.newContext({ignoreHTTPSErrors: true});
-    const APIResponse = await APIContext2.post('https://rahulshettyacademy.com/api/ecom/auth/login',{data: loginPayload});
-    expect(APIResponse.ok()).toBeTruthy();
-    const loginResponseJson = await APIResponse.json();
-    token = loginResponseJson.token;
     await page.addInitScript(value => {
         window.localStorage.setItem('token',value);
     },token);
