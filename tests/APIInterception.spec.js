@@ -10,7 +10,7 @@ test.beforeEach( async() => {
     token = await apiUtils.getToken();
 })
 
-test('Check empty order message', async({page}) => {
+test('Check empty order message @APInUI', async({page}) => {
     await page.addInitScript(value => {
         window.localStorage.setItem('token',value);
     },token);
@@ -36,7 +36,7 @@ test('Check empty order message', async({page}) => {
     await expect(yourOrdersLabel).toBeHidden();
 })
 
-test('Verify unauthorized error message for incorrect order', async({page}) => {
+test('Verify unauthorized error message for incorrect order @APInUI', async({page}) => {
     await page.addInitScript(value => {
         window.localStorage.setItem('token',value);
     },token);
@@ -51,7 +51,7 @@ test('Verify unauthorized error message for incorrect order', async({page}) => {
     expect(await unauthErrorLabel.textContent()).toBe('You are not authorize to view this order');
 })
 
-test('Verify abort calls',async({page})=> {
+test('Verify abort calls @APInUI',async({page})=> {
     await page.addInitScript(value => {
         window.localStorage.setItem('token',value);
     },token);

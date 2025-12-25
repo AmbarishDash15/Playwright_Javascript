@@ -3,7 +3,7 @@ const {PageObjectManager} = require('../pageObjects/PageObjectManager');
 const testData = JSON.parse(JSON.stringify(require('../testdata/UI_EndToEnd_Client-TestDataMultipleSet.json')))
 
 for(const data of testData){
-    test(`End to End Client App with POM with JSON Test Data for ${data.itemToBuy}`,async({page}) => {
+    test(`End to End Client App with POM with JSON Test Data for ${data.itemToBuy} @UI`,async({page}) => {
         const pageObjectManager = new PageObjectManager(page);//Initiate Page Object Manager
         
         //Navigate to Login page and perform valid login

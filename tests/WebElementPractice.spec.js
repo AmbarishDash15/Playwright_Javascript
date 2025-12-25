@@ -2,7 +2,7 @@ const {test, expect} = require('@playwright/test');
 const { assert } = require('console');
 test.describe.configure({mode: 'parallel'});
 
-test('Interact with Web elements',async({page}) => {
+test('Interact with Web elements @SmokeUI',async({page}) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     //radio button
     const radioBtn1 = page.locator('[value="radio1"]');
@@ -42,7 +42,7 @@ test('Interact with Web elements',async({page}) => {
     await expect(chkBxOpn2).toBeChecked();
 })
 
-test('Handle new window and tab',async({browser}) => {
+test('Handle new window and tab @SmokeUI',async({browser}) => {
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
@@ -64,7 +64,7 @@ test('Handle new window and tab',async({browser}) => {
     expect(await newTabPage.locator('div.logo a[href="https://www.qaclickacademy.com"]')).toBeVisible();
 })
 
-test('Handle Dialog Boxes',async({page})=> {
+test('Handle Dialog Boxes @SmokeUI',async({page})=> {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     //Alert and Confirm box handling
     const nameEditBox = await page.locator('input#name');
@@ -87,7 +87,7 @@ test('Handle Dialog Boxes',async({page})=> {
     await btnConfirm.click();
 })
 
-test('Interact with tables',async({page})=>{
+test('Interact with tables @SmokeUI',async({page})=>{
     const coursePriceToVerify = ['JMETER','25'];
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     //Web table
@@ -116,7 +116,7 @@ test('Interact with tables',async({page})=>{
     expect(totalAmtCalculated).toBe(Number(totalAmountOnPage));
 })
 
-test('Mouse hover menu interaction',async({page})=> {
+test('Mouse hover menu interaction @SmokeUI',async({page})=> {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     const mouseHoverButton = page.locator('button#mousehover');
     const mouseHoverMenuOption = page.locator('div.mouse-hover-content');
@@ -128,7 +128,7 @@ test('Mouse hover menu interaction',async({page})=> {
     await expect(page.locator('header a.blinkingText')).toBeInViewport();
 })
 
-test('Verify webelement visibility',async({page}) => {
+test('Verify webelement visibility @SmokeUI',async({page}) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     //Check Element Hide / Show
     const hideShowTextBox = page.locator('input#displayed-text');
@@ -142,7 +142,7 @@ test('Verify webelement visibility',async({page}) => {
     await expect(hideShowTextBox).toBeVisible();
 })
 
-test('Interact with iFrame',async({page}) => {
+test('Interact with iFrame @SmokeUI',async({page}) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     const iFramePageElement = page.locator('iframe#courses-iframe');
     const iFramePage = iFramePageElement.contentFrame();
@@ -156,7 +156,7 @@ test('Interact with iFrame',async({page}) => {
 
 })
 
-test('Handle Date selection',async({page})=>{
+test('Handle Date selection @SmokeUI',async({page})=>{
     const dateToPick = '18';
     const monthNumberToPick = '6';
     const yearToPick = '2031';

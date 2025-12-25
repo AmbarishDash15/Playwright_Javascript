@@ -2,7 +2,7 @@ const {test, expect} = require('@playwright/test');
 const {PageObjectManager} = require('../pageObjects/PageObjectManager');
 const testData = JSON.parse(JSON.stringify(require('../testdata/UI_EndToEnd_Client-TestDataSingleSet.json')))
 
-test('End to End Client App with POM with JSON Test Data',async({page}) => {
+test('End to End Client App with POM with JSON Test Data @UI',async({page}) => {
     const pageObjectManager = new PageObjectManager(page);//Initiate Page Object Manager
     
     //Navigate to Login page and perform valid login

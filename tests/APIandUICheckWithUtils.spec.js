@@ -12,7 +12,7 @@ test.beforeAll(async() => {
     utilsAPIResponse = await apiUtils.createOrder(orderPayLoad);
 })
 
-test('API and UI validation using util',async ({page}) => {
+test('API and UI validation using util @APInUI',async ({page}) => {
     const itemToBuy = 'ZARA COAT 3';
     await page.addInitScript(value => {
         window.localStorage.setItem('token',value);

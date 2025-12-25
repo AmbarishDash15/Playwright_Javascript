@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test')
 
-test('End to End Client App',async({browser}) => {
+test('End to End Client App @UI',async({browser}) => {
     const itemToBuy = 'ZARA COAT 3'; //testdata
     const loginEmail = 'dash.ambarish15+second@gmail.com'; //test data
     const context = await browser.newContext();

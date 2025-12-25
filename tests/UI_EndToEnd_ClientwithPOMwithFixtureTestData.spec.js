@@ -2,7 +2,7 @@
 const {customTest} = require('../testdata/UI_EndToEnd_Client-TestDataFixture');
 const {PageObjectManager} = require('../pageObjects/PageObjectManager');
 
-customTest('End to End Client App with POM and Fixture Data',async({page, testDataForOrder}) => {
+customTest('End to End Client App with POM and Fixture Data @UI',async({page, testDataForOrder}) => {
     const pageObjectManager = new PageObjectManager(page);//Initiate Page Object Manager
     
     //Navigate to Login page and perform valid login

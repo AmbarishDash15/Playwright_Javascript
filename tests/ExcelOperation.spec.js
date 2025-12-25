@@ -2,7 +2,7 @@ const {test, expect} = require('@playwright/test');
 const {MiscUtils} = require('../utils/MiscUtils');
 const {ExcelUtils} = require('../utils/ExcelUtils');
 
-test('Update Price with Excel operation',async({page}) => {
+test('Update Price with Excel operation @FileOpnUI',async({page}) => {
     const itemName = 'Orange';
     const newPrice = '500';
     const fileName = 'download.xlsx'
