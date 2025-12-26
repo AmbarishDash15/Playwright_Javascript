@@ -105,6 +105,7 @@ test('End to End Client App @UI',async({browser}) => {
     //Search for orders based on ORDER ID in table and click on Order details
     
     const orderIDCell = page.locator('th',{hasText:orderID});
+    await expect(orderIDCell).toBeVisible();
     const rowOrder = page.locator('tr',{has: orderIDCell});
     const viewBtn = rowOrder.locator('button',{hasText:'View'});
     await viewBtn.click();

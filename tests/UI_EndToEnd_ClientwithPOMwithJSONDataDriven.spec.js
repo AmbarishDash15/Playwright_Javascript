@@ -7,23 +7,23 @@ for(const data of testData){
         const pageObjectManager = new PageObjectManager(page);//Initiate Page Object Manager
         
         //Navigate to Login page and perform valid login
-        const loginPage = await pageObjectManager.getLoginPage();
+        const loginPage = pageObjectManager.getLoginPage();
         await loginPage.openApplicationUrl(data.appUrl); 
         await loginPage.validLogin(data.loginEmail,data.password); 
         
         //Search for item and add to cart
-        const dashboardPage = await pageObjectManager.getDashboardPage();
+        const dashboardPage = pageObjectManager.getDashboardPage();
         await dashboardPage.selectItemAndAddToCart(data.itemToBuy);
         await dashboardPage.verifyAddedToCartMsg();
         await dashboardPage.goToCart();
         
         //Verify item on Cart page and checkout
-        const cartPage = await pageObjectManager.getCartPage();
+        const cartPage = pageObjectManager.getCartPage();
         await cartPage.verifyProductAddedToCart(data.itemToBuy);
         await cartPage.clickCheckOut();
         
         //Enter details on Check out page and Checkout
-        const checkOutPage = await pageObjectManager.getCheckOutPage();
+        const checkOutPage = pageObjectManager.getCheckOutPage();
         await checkOutPage.clearAndEnterCCNo(data.ccNo);
         await checkOutPage.selectExpMonthYear(data.ccExpMonth,data.ccExpYear);
         await checkOutPage.enterCVVField(data.ccCVV);
@@ -34,7 +34,7 @@ for(const data of testData){
         await checkOutPage.clickPlaceOrderBtn();
 
         //Verify order confirmation and grab the ORDER ID
-        const orderConfirmationPage = await pageObjectManager.getOrderConfirmationPage();
+        const orderConfirmationPage = pageObjectManager.getOrderConfirmationPage();
         await orderConfirmationPage.verifyDetailsOnConfirmationPage(data.itemToBuy);
         const orderID = await orderConfirmationPage.getOrderIDFromConfPage();
 
@@ -42,12 +42,13 @@ for(const data of testData){
         await dashboardPage.goToOrders();
 
         //Search for Order Id in Orders page and go to Order details
-        const ordersPage = await pageObjectManager.getOrdersPage();
+        const ordersPage = pageObjectManager.getOrdersPage();
         await ordersPage.verifyOrdersPageLabel();
+        await ordersPage.verifyPresenceOfOrderID(orderID);
         await ordersPage.clickViewOrderButton(orderID);
         
         //verify order id and other details on Order details page
-        const orderDetailsPage = await pageObjectManager.getOrderDetailsPage();
+        const orderDetailsPage = pageObjectManager.getOrderDetailsPage();
         await orderDetailsPage.verifyOrderDetails(orderID, data.loginEmail, data.country, data.itemToBuy);
     })
 }

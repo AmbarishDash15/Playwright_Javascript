@@ -17,23 +17,23 @@ test('End to End Client App with POM @UI',async({page}) => {
     const pageObjectManager = new PageObjectManager(page);//Initiate Page Object Manager
     
     //Navigate to Login page and perform valid login
-    const loginPage = await pageObjectManager.getLoginPage();
+    const loginPage = pageObjectManager.getLoginPage();
     await loginPage.openApplicationUrl(appUrl); 
     await loginPage.validLogin(loginEmail,password); 
     
     //Search for item and add to cart
-    const dashboardPage = await pageObjectManager.getDashboardPage();
+    const dashboardPage = pageObjectManager.getDashboardPage();
     await dashboardPage.selectItemAndAddToCart(itemToBuy);
     await dashboardPage.verifyAddedToCartMsg();
     await dashboardPage.goToCart();
     
     //Verify item on Cart page and checkout
-    const cartPage = await pageObjectManager.getCartPage();
+    const cartPage = pageObjectManager.getCartPage();
     await cartPage.verifyProductAddedToCart(itemToBuy);
     await cartPage.clickCheckOut();
     
     //Enter details on Check out page and Checkout
-    const checkOutPage = await pageObjectManager.getCheckOutPage();
+    const checkOutPage = pageObjectManager.getCheckOutPage();
     await checkOutPage.clearAndEnterCCNo(ccNo);
     await checkOutPage.selectExpMonthYear(ccExpMonth,ccExpYear);
     await checkOutPage.enterCVVField(ccCVV);
@@ -44,7 +44,7 @@ test('End to End Client App with POM @UI',async({page}) => {
     await checkOutPage.clickPlaceOrderBtn();
 
     //Verify order confirmation and grab the ORDER ID
-    const orderConfirmationPage = await pageObjectManager.getOrderConfirmationPage();
+    const orderConfirmationPage = pageObjectManager.getOrderConfirmationPage();
     await orderConfirmationPage.verifyDetailsOnConfirmationPage(itemToBuy);
     const orderID = await orderConfirmationPage.getOrderIDFromConfPage();
 
@@ -52,11 +52,12 @@ test('End to End Client App with POM @UI',async({page}) => {
     await dashboardPage.goToOrders();
 
     //Search for Order Id in Orders page and go to Order details
-    const ordersPage = await pageObjectManager.getOrdersPage();
+    const ordersPage = pageObjectManager.getOrdersPage();
     await ordersPage.verifyOrdersPageLabel();
+    await ordersPage.verifyPresenceOfOrderID(orderID);
     await ordersPage.clickViewOrderButton(orderID);
     
     //verify order id and other details on Order details page
-    const orderDetailsPage = await pageObjectManager.getOrderDetailsPage();
+    const orderDetailsPage = pageObjectManager.getOrderDetailsPage();
     await orderDetailsPage.verifyOrderDetails(orderID, loginEmail, country, itemToBuy);
 })

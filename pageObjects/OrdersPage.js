@@ -10,6 +10,10 @@ class OrdersPage {
         await this.orderTable.waitFor({state: 'attached'});
         await expect(this.yourOrdersLabel).toContainText('Your Orders');
     }
+    async verifyPresenceOfOrderID(orderID){
+        const orderIDCell = this.page.locator('th',{hasText:orderID});
+        await expect(orderIDCell).toBeVisible();
+    }
     async clickViewOrderButton(orderID){
         const orderIDCell = this.page.locator('th',{hasText:orderID});
         const rowOrder = this.page.locator('tr',{has: orderIDCell});
